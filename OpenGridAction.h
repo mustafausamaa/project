@@ -6,9 +6,10 @@
 #include "Card.h"
 #include<fstream>
 
-class OpenGridAction:public SaveGridAction,public Action
+class OpenGridAction:public Action
 {
 	ifstream pOpen;
+	string name;
 public:
 	OpenGridAction(ApplicationManager* pApp);
 	virtual void ReadActionParameters();

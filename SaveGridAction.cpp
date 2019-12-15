@@ -9,8 +9,12 @@ SaveGridAction::SaveGridAction(ApplicationManager* pApp):Action(pApp)
 
 void SaveGridAction::ReadActionParameters()
 {
-	save.open("Grid.txt", ios::out);
 	Grid* pGrid = pManager->GetGrid();
+	Output* pOut = pGrid->GetOutput();
+	pOut->PrintMessage("Enter file Name to save data...");
+	name = pGrid->GetInput()->GetSrting(pOut);
+	save.open(name+".txt", ios::out);
+	
 	NofLadders = pGrid->numofladders();
 	NofSnakes = pGrid->numofSnakes();
 	NofCards = pGrid->numofCards();
@@ -27,6 +31,6 @@ void SaveGridAction::Execute()
 	save << NofCards << endl;
 	pGrid->SaveAll(save, card);
 	save.close();
-	pGrid->GetOutput()->PrintMessage("The Grid has been saved in text file Grid.txt...");
+	pGrid->GetOutput()->PrintMessage("The Grid has been saved in text file"+name+".txt...");
 		
 }

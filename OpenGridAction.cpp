@@ -14,25 +14,29 @@
 #include "CardFourteen.h"
 #include "CardThirteen.h"
 
-OpenGridAction::OpenGridAction(ApplicationManager* pApp) : Action(pApp), SaveGridAction(pApp)
+OpenGridAction::OpenGridAction(ApplicationManager* pApp) : Action(pApp)
 {
 
 }
 
 void OpenGridAction::ReadActionParameters()
 {
-	save.open("Grid.txt", ios::app);
-	pOpen.open("Grid.txt");
 	Grid* pGrid = Action::pManager->GetGrid();
-	SaveGridAction::ReadActionParameters();
+	Output* pOut = pGrid->GetOutput();
+	pOut->PrintMessage("Enter file Name to save data...");
+	name = pGrid->GetInput()->GetSrting(pOut);
+	//save.open(name+".txt", ios::app);
+	pOpen.open(name+".txt");
+	
+	//SaveGridAction::ReadActionParameters();
 }
 
 void OpenGridAction::Execute()
 {
 	ReadActionParameters();
 	Grid* pGrid = Action::pManager->GetGrid();
-
-
+	pGrid->numofladders();
+	int NofLadders= pGrid->numofladders();
 	pOpen >> NofLadders;
 	for (int i = 0; i < NofLadders; i++)
 	{
@@ -46,6 +50,7 @@ void OpenGridAction::Execute()
 		pGrid->AddObjectToCell(pLadder);
 		pGrid->GetOutput()->DrawLadder(start1, end1);
 	}
+	int NofSnakes = pGrid->numofSnakes();
 	pOpen >> NofSnakes;
 	for (int i = 0; i < NofSnakes; i++)
 	{
@@ -59,6 +64,7 @@ void OpenGridAction::Execute()
 		pGrid->AddObjectToCell(pSnake);
 		pGrid->GetOutput()->DrawSnake(start1, end1);
 	}
+	int NofCards = pGrid->numofCards();
 	pOpen >> NofCards;
 	for (int i = 0; i < NofCards; i++)
 	{
@@ -134,5 +140,5 @@ void OpenGridAction::Execute()
 		pGrid->GetOutput()->DrawCell(cardPosition, pCard->GetCardNumber());
 	}
 	
-	pGrid->GetOutput()->PrintMessage("The Grid has been Loaded from text file Grid.txt...");
+	pGrid->GetOutput()->PrintMessage("The Grid has been Loaded from text file " + name + ".txt...");
 }

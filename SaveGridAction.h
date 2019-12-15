@@ -9,6 +9,7 @@ class SaveGridAction:public Action
 	int NofLadders;
 	int NofSnakes;
 	int NofCards;
+	string name;
 public:
 	SaveGridAction(ApplicationManager* pApp);
 	
