@@ -4,11 +4,11 @@ int CardEleven::CardPrice = 0;
 int CardEleven::Fees = 0;
 Player* CardEleven::pOwner = NULL;
 bool CardEleven::IsInitialized = false;
-CardEleven::CardEleven(const CellPosition &pos)
-	 :Card(pos)
+CardEleven::CardEleven(const CellPosition& pos)
+	:Card(pos)
 {
-	cardNumber=11;
-		 Isbought=false;
+	cardNumber = 11;
+	Isbought = false;
 }
 void CardEleven::Save(ofstream& OutFile, GOType Type)
 {
@@ -36,7 +36,7 @@ void CardEleven::Load(ifstream& Infile, GOType Type, CellPosition& start2, CellP
 	}
 }
 
-void CardEleven::ReadCardParameters(Grid *pGrid)
+void CardEleven::ReadCardParameters(Grid* pGrid)
 {
 	//TODO
 
@@ -69,9 +69,9 @@ void CardEleven::ReadCardParameters(Grid *pGrid)
 
 }
 
-void CardEleven::Apply(Grid *pGrid,Player *pPlayer)
+void CardEleven::Apply(Grid* pGrid, Player* pPlayer)
 {
-	
+
 	Input* pIn = pGrid->GetInput();
 	Output* pOut = pGrid->GetOutput();
 	if (Isbought == false)
@@ -91,9 +91,9 @@ void CardEleven::Apply(Grid *pGrid,Player *pPlayer)
 			}
 			else
 			{
-				
+
 				pGrid->PrintErrorMessage("Sorry, your current wallet is less than the card price");
-				
+
 			}
 		}
 	}
@@ -117,6 +117,10 @@ void CardEleven::Apply(Grid *pGrid,Player *pPlayer)
 			}
 
 		}
-		
+
 	}
+}
+void CardEleven::Set_Isbought(bool t)
+{
+	Isbought = t;
 }

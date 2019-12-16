@@ -4,11 +4,11 @@ int CardThirteen::CardPrice = 0;
 int CardThirteen::Fees = 0;
 Player* CardThirteen::pOwner = NULL;
 bool CardThirteen::IsInitialized = false;
-CardThirteen::CardThirteen(const CellPosition &pos)
-	 :Card(pos)
+CardThirteen::CardThirteen(const CellPosition& pos)
+	:Card(pos)
 {
-	cardNumber=13;
-		 Isbought=false;
+	cardNumber = 13;
+	Isbought = false;
 }
 void CardThirteen::Save(ofstream& OutFile, GOType Type)
 {
@@ -38,7 +38,7 @@ void CardThirteen::Load(ifstream& Infile, GOType Type, CellPosition& start2, Cel
 	}
 }
 
-void CardThirteen::ReadCardParameters(Grid *pGrid)
+void CardThirteen::ReadCardParameters(Grid* pGrid)
 {
 	//TODO
 
@@ -71,9 +71,9 @@ void CardThirteen::ReadCardParameters(Grid *pGrid)
 
 }
 
-void CardThirteen::Apply(Grid *pGrid,Player *pPlayer)
+void CardThirteen::Apply(Grid* pGrid, Player* pPlayer)
 {
-	
+
 	Input* pIn = pGrid->GetInput();
 	Output* pOut = pGrid->GetOutput();
 	if (Isbought == false)
@@ -93,9 +93,9 @@ void CardThirteen::Apply(Grid *pGrid,Player *pPlayer)
 			}
 			else
 			{
-				
+
 				pGrid->PrintErrorMessage("Sorry, your current wallet is less than the card price");
-				
+
 			}
 		}
 	}
@@ -119,6 +119,10 @@ void CardThirteen::Apply(Grid *pGrid,Player *pPlayer)
 			}
 
 		}
-		
+
 	}
+}
+void CardThirteen::Set_Isbought(bool t)
+{
+	Isbought = t;
 }

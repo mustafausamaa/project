@@ -4,11 +4,11 @@ int CardTwelve::CardPrice = 0;
 int CardTwelve::Fees = 0;
 Player* CardTwelve::pOwner = NULL;
 bool CardTwelve::IsInitialized = false;
-CardTwelve::CardTwelve(const CellPosition &pos)
-	 :Card(pos)
+CardTwelve::CardTwelve(const CellPosition& pos)
+	:Card(pos)
 {
-	cardNumber=12;
-		 Isbought=false;
+	cardNumber = 12;
+	Isbought = false;
 }
 void CardTwelve::Save(ofstream& OutFile, GOType Type)
 {
@@ -37,7 +37,7 @@ void CardTwelve::Load(ifstream& Infile, GOType Type, CellPosition& start2, CellP
 	}
 }
 
-void CardTwelve::ReadCardParameters(Grid *pGrid)
+void CardTwelve::ReadCardParameters(Grid* pGrid)
 {
 	//TODO
 
@@ -70,9 +70,9 @@ void CardTwelve::ReadCardParameters(Grid *pGrid)
 
 }
 
-void CardTwelve::Apply(Grid *pGrid,Player *pPlayer)
+void CardTwelve::Apply(Grid* pGrid, Player* pPlayer)
 {
-	
+
 	Input* pIn = pGrid->GetInput();
 	Output* pOut = pGrid->GetOutput();
 	if (Isbought == false)
@@ -92,9 +92,9 @@ void CardTwelve::Apply(Grid *pGrid,Player *pPlayer)
 			}
 			else
 			{
-				
+
 				pGrid->PrintErrorMessage("Sorry, your current wallet is less than the card price");
-				
+
 			}
 		}
 	}
@@ -118,6 +118,10 @@ void CardTwelve::Apply(Grid *pGrid,Player *pPlayer)
 			}
 
 		}
-		
+
 	}
+}
+void CardTwelve::Set_Isbought(bool t)
+{
+	Isbought = t;
 }

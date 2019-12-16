@@ -2,7 +2,11 @@
 #include "Grid.h"
 #include "Player.h"
 #include "Action.h"
-
+#include"CardTen.h"
+#include "CardFourteen.h"
+#include "CardEleven.h"
+#include "CardThirteen.h"
+#include "CardTwelve.h"
 NewGame::NewGame(ApplicationManager* pApp) : Action(pApp)
 {
 }
@@ -51,6 +55,11 @@ void NewGame::Execute()
 			// 5- Advance the current player number of pGrid
 			pGrid->AdvanceCurrentPlayer();
 		}
+		CardTen::Set_Isbought(false);
+		CardEleven::Set_Isbought(false);
+		CardTwelve::Set_Isbought(false);
+		CardThirteen::Set_Isbought(false);
+		CardFourteen::Set_Isbought(false);
 		pGrid->set_currplayernum(0);
 		// NOTE: the above guidelines are the main ones but not a complete set (You may need to add more steps).
 	}
