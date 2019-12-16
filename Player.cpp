@@ -185,11 +185,11 @@ void Player::SpecialAttacks(Grid* pGrid, int diceNumber)
 	switch (pGrid->GetInput()->GetInteger(pGrid->GetOutput()))
 	{
 	case 1:
-		SpecialAttack_ICE(pGrid,diceNumber);
+		pGrid->SpecialAttack_ICE();
 		break;
 	case 2:
-		SpecialAttack_FIRE(pGrid, diceNumber);
-		break;
+		pGrid->SpecialAttack_FIRE();
+			break;
 	case 3:
 		SpecialAttack_POISON(pGrid, diceNumber);
 		break;
@@ -200,13 +200,7 @@ void Player::SpecialAttacks(Grid* pGrid, int diceNumber)
 		break;
 	}
 }
-void Player::SpecialAttack_ICE(Grid* pGrid, int diceNumber)
-{
-}
-void Player::SpecialAttack_FIRE(Grid* pGrid, int diceNumber)
-{
-	
-}
+
 void Player::SpecialAttack_POISON(Grid* pGrid, int diceNumber)
 {
 	
