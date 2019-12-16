@@ -4,10 +4,11 @@
 
 class CardFourteen : public Card
 {
-	int CardPrice;
-	int Fees;
-	bool Isbought;
-	Player *pOwner;
+	static int CardPrice;
+	static int Fees;
+	static bool Isbought;
+	static Player* pOwner;
+	static bool IsInitialized;
 public:
 	CardFourteen(const CellPosition & pos);
 	void Save(ofstream& OutFile, GOType Type);

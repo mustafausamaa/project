@@ -13,6 +13,8 @@ class CardTen : public Card
 	 
 public:
 	CardTen(const CellPosition & pos);
+	void Save(ofstream& OutFile, GOType Type);
+	void Load(ifstream& Infile, GOType Type, CellPosition& start2, CellPosition& end2);
 	void ReadCardParameters(Grid *pGrid);// 
 	void Apply(Grid *pGrid, Player *pPlayer); 
 	

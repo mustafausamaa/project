@@ -34,7 +34,7 @@ void CardFive::Apply(Grid* pGrid, Player* pPlayer)
 	int justrolled=pPlayer->GetjustRolledDiceNum();
 
 	pPlayer->Move(pGrid,justrolled);
-//	pGrid->UpdatePlayerCell();
+
 	// Checking if cell has ladder or snake  or not <<
 	// First check game object  >>>> Dynamic Casting ufing has ladder // has snake ...
 
