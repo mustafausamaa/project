@@ -24,7 +24,7 @@ void OpenGridAction::ReadActionParameters()
 
 	Grid* pGrid = Action::pManager->GetGrid();
 	Output* pOut = pGrid->GetOutput();
-	pOut->PrintMessage("Enter file Name to save data...");
+	pOut->PrintMessage("Enter file Name to Load data...");
 	name = pGrid->GetInput()->GetSrting(pOut);
 	pOpen.open(name + ".txt");
 }
@@ -136,6 +136,9 @@ void OpenGridAction::Execute()
 			case 14:
 				pCard = new CardFourteen(cardPosition);
 				pCard->Load(pOpen, card, cardPosition, null);
+				break;
+			default:
+				pCard = NULL;
 				break;
 			}
 
