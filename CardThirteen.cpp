@@ -48,6 +48,7 @@ void CardThirteen::ReadCardParameters(Grid* pGrid)
 	//2- Read Integers from user indicating CardPrice and Fees
 	if (IsInitialized == false)
 	{
+
 		pOut->PrintMessage("New Card 13: Please Enter Card Price.....");
 		CardPrice = pIn->GetInteger(pOut);
 		pOut->PrintMessage("Enter Card Fees:");
@@ -121,4 +122,8 @@ void CardThirteen::Apply(Grid* pGrid, Player* pPlayer)
 		}
 
 	}
+}
+void CardThirteen::Set_Isbought(bool t)
+{
+	Isbought = t;
 }

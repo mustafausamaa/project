@@ -43,12 +43,16 @@ public:
 
 	// ====== Game Functions ======
 
-	void Move(Grid* pGrid, int diceNumber);	// Moves the Player with the passed diceNumber 
-												// and Applies the Game Object's effect (if any) of the end reached cell 
-												// for example, if the end cell contains a ladder, take it
-
-	void AppendPlayerInfo(string& playersInfo) const; // Appends player's info to the input string, 
-													   // for example: P0(wallet, turnCount)
-
+	void Move(Grid * pGrid, int diceNumber);	// Moves the Player with the passed diceNumber 
+	                                            // and Applies the Game Object's effect (if any) of the end reached cell 
+	                                            // for example, if the end cell contains a ladder, take it
+	
+	void AppendPlayerInfo(string & playersInfo) const; // Appends player's info to the input string, 
+	                                                   // for example: P0(wallet, turnCount)
+  void SpecialAttacks(Grid*,int);
+	void SpecialAttack_ICE(Grid*, int);
+	void SpecialAttack_FIRE(Grid*, int);
+	void SpecialAttack_POISON(Grid*, int);
+	void SpecialAttack_LIGHTNING(Grid*, int);
 };
 
