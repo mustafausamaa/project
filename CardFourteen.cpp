@@ -45,7 +45,8 @@ void CardFourteen::ReadCardParameters(Grid* pGrid)
 	//2- Read Integers from user indicating CardPrice and Fees
 	if (IsInitialized == false)
 	{
-		pOut->PrintMessage("New CardTen: Please Enter Card Price.....");
+
+		pOut->PrintMessage("New Card 14: Please Enter Card Price.....");
 		CardPrice = pIn->GetInteger(pOut);
 		pOut->PrintMessage("Enter Card Fees:");
 		Fees = pIn->GetInteger(pOut);

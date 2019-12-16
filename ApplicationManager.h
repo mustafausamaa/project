@@ -14,8 +14,8 @@ class ApplicationManager
 	Grid* pGrid;
 
 	// Pointers to the Input and Output 
-	Input *pIn;
-	Output *pOut;
+	Input* pIn;
+	Output* pOut;
 
 public:
 
@@ -24,7 +24,7 @@ public:
 
 	// ========== Interface Management Functions ==========
 
-	Grid * GetGrid() const;    // Returns pointer to the Grid
+	Grid* GetGrid() const;    // Returns pointer to the Grid
 
 	void UpdateInterface() const;
 
@@ -32,7 +32,7 @@ public:
 
 	ActionType GetUserAction() const; // Reads the input command from the user and returns the corresponding action type
 
-	void ExecuteAction(ActionType) ;  // Creates an action of the passed actionType and executes it
+	void ExecuteAction(ActionType);  // Creates an action of the passed actionType and executes it
 
 };
 

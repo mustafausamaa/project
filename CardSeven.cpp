@@ -30,6 +30,7 @@ void CardSeven::Apply(Grid* pGrid, Player* pPlayer)
 	Card::Apply(pGrid, pPlayer);
 	pGrid->PrintErrorMessage("Player " + to_string(pGrid->get_currplayernum()) + " will roll the dice again.Click to continue ...");
 	int temp = pGrid->get_currplayernum();
+	pPlayer->Set_turncount(pPlayer->GetTurnCount() - 1);
 	pGrid->set_currplayernum(temp - 1);
 
 }

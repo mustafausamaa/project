@@ -11,6 +11,33 @@ CardTen::CardTen(const CellPosition& pos)
 	cardNumber = 10;
 
 }
+void CardTen::Save(ofstream& OutFile, GOType Type)
+{
+	if (Type == card)
+	{
+		CellPosition temp;
+		temp = GetPosition();
+
+		OutFile << cardNumber << "\t" << temp.GetCellNum() << "\t" << CardPrice << "\t" << Fees << endl; //there is still a missing implementation
+
+	}
+	else { return; }
+
+
+}
+void CardTen::Load(ifstream& Infile, GOType Type, CellPosition& start2, CellPosition& end2)
+{
+	if (Type == card)
+	{
+
+		int cardprice, fees;
+		Infile >> cardprice >> fees;
+		CardPrice = cardprice;
+		Fees = fees;
+
+
+	}
+}
 
 void CardTen::ReadCardParameters(Grid* pGrid)
 {
@@ -22,7 +49,7 @@ void CardTen::ReadCardParameters(Grid* pGrid)
 	//2- Read Integers from user indicating CardPrice and Fees
 	if (IsInitialized == false)
 	{
-		pOut->PrintMessage("New CardTen: Please Enter Card Price.....");
+		pOut->PrintMessage("New Card 10 : Please Enter Card Price.....");
 		CardPrice = pIn->GetInteger(pOut);
 		pOut->PrintMessage("Enter Card Fees:");
 		Fees = pIn->GetInteger(pOut);
@@ -67,9 +94,9 @@ void CardTen::Apply(Grid* pGrid, Player* pPlayer)
 			}
 			else
 			{
-				
+
 				pGrid->PrintErrorMessage("Sorry, your current wallet is less than the card price");
-				
+
 			}
 		}
 	}
@@ -93,7 +120,7 @@ void CardTen::Apply(Grid* pGrid, Player* pPlayer)
 			}
 
 		}
-		
+
 	}
 }
 void CardTen::Set_Isbought(bool t)

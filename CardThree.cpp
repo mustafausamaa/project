@@ -25,10 +25,10 @@ void CardThree::ReadCardParameters(Grid* pGrid)
 	Output* pOut = pGrid->GetOutput();
 	// 2- Read an Integer from the user using the Input class and set the walletAmount parameter with it
 	//    Don't forget to first print to a descriptive message to the user like:"New CardOne: Enter its wallet amount ..."
-	
-	
 
-	
+
+
+
 
 	// 3- Clear the status bar
 	pOut->ClearStatusBar();
@@ -48,7 +48,7 @@ void CardThree::Apply(Grid* pGrid, Player* pPlayer)
 	pGrid->GetNextLadder(position)->Apply(pGrid, pPlayer);
 
 	// OR
-	
+
 	// pGrid->UpdatePlayerCell(pPlayer, pGrid->GetNextLadder(position)->GetEndPosition())
 
 }

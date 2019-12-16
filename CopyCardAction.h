@@ -9,7 +9,7 @@ class CopyCardAction : public Action
 	Card* ptr;
 public:
 
-	CopyCardAction(ApplicationManager *pApp);
+	CopyCardAction(ApplicationManager* pApp);
 
 	void ReadActionParameters();
 

@@ -3,8 +3,9 @@
 #include "fstream"
 #include "Action.h"
 
-class SaveGridAction:public Action
-{protected:
+class SaveGridAction :public Action
+{
+protected:
 	ofstream save;
 	int NofLadders;
 	int NofSnakes;
@@ -12,7 +13,7 @@ class SaveGridAction:public Action
 	string name;
 public:
 	SaveGridAction(ApplicationManager* pApp);
-	
+
 	virtual void ReadActionParameters();
 	virtual void Execute();
 };

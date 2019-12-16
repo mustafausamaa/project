@@ -7,7 +7,7 @@
 #include "Player.h"
 #include "Snake.h"
 
-Cell::Cell(const CellPosition & pos) : position(pos)
+Cell::Cell(const CellPosition& pos) : position(pos)
 {
 	// initializes the data members (position & pGameObject)
 	pGameObject = NULL;
@@ -30,34 +30,34 @@ CellPosition Cell::GetCellPosition() const
 
 
 
-bool Cell::SetGameObject(GameObject * pGObj)
+bool Cell::SetGameObject(GameObject* pGObj)
 {
-	if (pGameObject != NULL && pGObj!=NULL) // already contains one
+	if (pGameObject != NULL && pGObj != NULL) // already contains one
 		return false; // do NOT add it and return false
 
 	pGameObject = pGObj;
 	return true;
 }
 
-GameObject * Cell::GetGameObject() const
+GameObject* Cell::GetGameObject() const
 {
 	return pGameObject;
 }
 
-Ladder * Cell::HasLadder() const
+Ladder* Cell::HasLadder() const
 {
-	return dynamic_cast<Ladder *>(pGameObject);
+	return dynamic_cast<Ladder*>(pGameObject);
 }
 
-Snake * Cell::HasSnake() const
+Snake* Cell::HasSnake() const
 {
 
 	///TODO: Implement the following function like HasLadder() function
 
-	return dynamic_cast<Snake *>(pGameObject); // THIS LINE SHOULD CHANGED WITH YOUR IMPLEMENTATION
+	return dynamic_cast<Snake*>(pGameObject); // THIS LINE SHOULD CHANGED WITH YOUR IMPLEMENTATION
 }
 
-Card * Cell::HasCard() const
+Card* Cell::HasCard() const
 {
 
 	///TODO: Implement the following function like HasLadder() function

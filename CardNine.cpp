@@ -24,10 +24,10 @@ void CardNine::ReadCardParameters(Grid* pGrid)
 	Output* pOut = pGrid->GetOutput();
 	// 2- Read an Integer from the user using the Input class and set the walletAmount parameter with it
 	//    Don't forget to first print to a descriptive message to the user like:"New CardOne: Enter its wallet amount ..."
-	pOut->PrintMessage("New CardNine: Enter Cell to move to...");
+	pOut->PrintMessage("New Card 9: Enter Cell to move to...");
 	celltomoveto = pIn->GetCellClicked();
 
-	
+
 
 	// 3- Clear the status bar
 	pOut->ClearStatusBar();

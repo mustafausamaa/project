@@ -2,7 +2,7 @@
 #include "Player.h"
 #include"Grid.h"
 
-Snake::Snake(const CellPosition& startCellPos, const CellPosition& endCellPos) : GameObject(startCellPos),ObjType(snake)
+Snake::Snake(const CellPosition& startCellPos, const CellPosition& endCellPos) : GameObject(startCellPos), ObjType(snake)
 {
 	if (startCellPos.HCell() != endCellPos.HCell() || startCellPos.GetCellNum() < endCellPos.GetCellNum())
 		return;

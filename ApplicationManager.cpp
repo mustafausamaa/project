@@ -15,6 +15,7 @@
 #include"PasteCardAction.h"
 #include"Snake.h"
 #include "Switch_to_PlayMode.h"
+#include "EditCard.h"
 
 
 ///TODO: Add #include for all action types
@@ -86,7 +87,9 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 	case Delete:
 		pAct = new DeleteGameObject(this);
 		break;
-
+	case Edit:
+		pAct = new EditCard(this);
+		break;
 	case Cut:
 		pAct = new CutCardAction(this);
 		break;
@@ -114,7 +117,7 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 
 	case TO_DESIGN_MODE:
 		pAct = new Switch_to_DesignMode(this);
-		
+
 		break;
 
 
