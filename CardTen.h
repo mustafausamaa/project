@@ -15,6 +15,7 @@ public:
 	CardTen(const CellPosition & pos);
 	void ReadCardParameters(Grid *pGrid);// 
 	void Apply(Grid *pGrid, Player *pPlayer); 
+	static void Set_Isbought(bool);
 	
 												/*Has two parts
 												1-Checks if the card is bought or not

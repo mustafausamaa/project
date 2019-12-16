@@ -96,3 +96,7 @@ void CardTen::Apply(Grid* pGrid, Player* pPlayer)
 		
 	}
 }
+void CardTen::Set_Isbought(bool t)
+{
+	Isbought = t;
+}
