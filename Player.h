@@ -50,5 +50,9 @@ public:
 	void AppendPlayerInfo(string & playersInfo) const; // Appends player's info to the input string, 
 	                                                   // for example: P0(wallet, turnCount)
 void SpecialAttacks(Grid*,int);
+	void SpecialAttack_ICE(Grid*, int);
+	void SpecialAttack_FIRE(Grid*, int);
+	void SpecialAttack_POISON(Grid*, int);
+	void SpecialAttack_LIGHTNING(Grid*, int);
 };
 
