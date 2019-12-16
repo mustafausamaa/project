@@ -182,4 +182,36 @@ void Player::AppendPlayerInfo(string& playersInfo) const
 void Player::SpecialAttacks(Grid* pGrid, int diceNumber)
 {
 	pGrid->GetOutput()->PrintMessage("Choose Your Special Attack .. Ice[1]-Fire[2]-Poison[3]-Lightning[4]..");
+	switch (pGrid->GetInput()->GetInteger(pGrid->GetOutput()))
+	{
+	case 1:
+		SpecialAttack_ICE(pGrid,diceNumber);
+		break;
+	case 2:
+		SpecialAttack_FIRE(pGrid, diceNumber);
+		break;
+	case 3:
+		SpecialAttack_POISON(pGrid, diceNumber);
+		break;
+	case 4:
+		SpecialAttack_LIGHTNING(pGrid, diceNumber);
+		break;
+	default:
+		break;
+	}
+}
+void Player::SpecialAttack_ICE(Grid* pGrid, int diceNumber)
+{
+}
+void Player::SpecialAttack_FIRE(Grid* pGrid, int diceNumber)
+{
+	
+}
+void Player::SpecialAttack_POISON(Grid* pGrid, int diceNumber)
+{
+	
+}
+void Player::SpecialAttack_LIGHTNING(Grid* pGrid, int diceNumber)
+{
+	
 }
