@@ -273,6 +273,19 @@ void Grid::SaveAll(ofstream& Output, GOType Type) const
 
 }
 
+void Grid::DeleteAll()
+{
+	for (int i = NumVerticalCells - 1; i >= 0; i--) // bottom up
+	{
+		for (int j = 0; j < NumHorizontalCells; j++) // left to right
+		{
+			GameObject* pGopject = CellList[i][j]->GetGameObject();
+			if (pGopject != NULL)
+				RemoveObjectFromCell(pGopject->GetPosition());
+		}
+	}
+}
+
 int Grid::numofladders()
 {
 	int count = 0;

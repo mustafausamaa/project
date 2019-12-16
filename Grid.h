@@ -83,6 +83,7 @@ public:
 	void PrintErrorMessage(string msg); // Prints an error message on statusbar, Waits for mouse click then clears statusbar
 										// We added this function once here because it is used many times by other classes
 	void SaveAll(ofstream& Output, GOType Type)const;
+	void DeleteAll();
 	int numofladders();
 	int numofSnakes();
 	int numofCards();

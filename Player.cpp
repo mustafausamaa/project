@@ -7,7 +7,7 @@ Player::Player(Cell* pCell, int playerNum) : stepCount(0), wallet(100), playerNu
 	this->pCell = pCell;
 	this->turnCount = 0;
 	Roll = true;
-
+	freeze = false;
 	// Make all the needed initialization or validations
 }
 
@@ -16,6 +16,11 @@ Player::Player(Cell* pCell, int playerNum) : stepCount(0), wallet(100), playerNu
 void Player::set_roll(bool roll)
 {
 	Roll = roll;
+}
+
+void Player::setfreeze(bool f)
+{
+	freeze = f;
 }
 
 
@@ -98,7 +103,18 @@ void Player::Move(Grid* pGrid, int diceNumber)
 		return;
 	}
 	else {
-
+		if (freeze)
+		{
+			turnCount++;
+			if (turnCount > 3)
+			{
+				wallet = wallet + (diceNumber * 10);
+				turnCount = 0;
+				return;
+			}
+			pCell->GetGameObject()->Apply(pGrid, this);
+			return;
+		}
 		// 1- Increment the turnCount because calling Move() means that the player has rolled the dice once
 		turnCount++;
 		// 2- Check the turnCount to know if the wallet recharge turn comes (recharge wallet instead of move)

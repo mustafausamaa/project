@@ -61,14 +61,15 @@ void CardTen::Apply(Grid* pGrid, Player* pPlayer)
 
 				Isbought = true;
 				pPlayer->SetWallet(pPlayer->GetWallet() - CardPrice);
-				pOut->PrintMessage("Card Successfully Bought");
-				pOut->ClearStatusBar();
+				pGrid->PrintErrorMessage("Card Successfully Bought");
+
 				pOwner = pPlayer;
 			}
 			else
 			{
-				pOut->PrintMessage("Sorry, your current wallet is less than the card price");
-				pOut->ClearStatusBar();
+				
+				pGrid->PrintErrorMessage("Sorry, your current wallet is less than the card price");
+				
 			}
 		}
 	}
@@ -80,16 +81,18 @@ void CardTen::Apply(Grid* pGrid, Player* pPlayer)
 			{
 				pPlayer->SetWallet(pPlayer->GetWallet() - Fees);
 				pOwner->SetWallet(pOwner->GetWallet() + Fees);
-				pOut->PrintMessage("Fees Successfully paid");
+				pGrid->PrintErrorMessage("Fees Successfully paid");
+				pPlayer->setfreeze(false);
 				pOut->ClearStatusBar();
 
 			}
+			else
+			{
+				pGrid->PrintErrorMessage("You don't have enough coins to pay the fees");
+				pPlayer->setfreeze(true);
+			}
 
 		}
-		else
-		{
-			pOut->PrintMessage("You don't have enough coins to pay the fees");
-			pOut->ClearStatusBar();
-		}
+		
 	}
 }

@@ -28,9 +28,9 @@ void CardSeven::Apply(Grid* pGrid, Player* pPlayer)
 
 	// 1- Call Apply() of the base class Card to print the message that you reached this card number
 	Card::Apply(pGrid, pPlayer);
-/////	pGrid->PrintErrorMessage("Player " + to_string(pGrid->get_currplayernum()) + " will roll the dice again.Click to continue ...");
-/////	int temp = pGrid->get_currplayernum();
-/////	pGrid->set_currplayernum(temp - 1);
+	pGrid->PrintErrorMessage("Player " + to_string(pGrid->get_currplayernum()) + " will roll the dice again.Click to continue ...");
+	int temp = pGrid->get_currplayernum();
+	pGrid->set_currplayernum(temp - 1);
 
 }
 

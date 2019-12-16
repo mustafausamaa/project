@@ -9,6 +9,7 @@
 #include "NewGame.h"
 #include "SaveGridAction.h"
 #include "OpenGridAction.h"
+#include "DeleteGameObject.h"
 #include"CopyCardAction.h"
 #include"CutCardAction.h"
 #include"PasteCardAction.h"
@@ -81,6 +82,9 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		break;
 	case Copy:
 		pAct = new CopyCardAction(this);
+		break;
+	case Delete:
+		pAct = new DeleteGameObject(this);
 		break;
 
 	case Cut:
