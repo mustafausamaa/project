@@ -11,15 +11,15 @@ class CutCardAction : public CopyCardAction
 	Card* ptr;
 	CellPosition pos;
 public:
-	CutCardAction(ApplicationManager *pApp);
-	
+	CutCardAction(ApplicationManager* pApp);
+
 	CellPosition getLast()const;
 
 	void ReadActionParameters();
-	
+
 	~CutCardAction();
 
 	virtual void Execute();
-	
+
 };
 

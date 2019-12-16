@@ -26,7 +26,7 @@ void OpenGridAction::ReadActionParameters()
 	Output* pOut = pGrid->GetOutput();
 	pOut->PrintMessage("Enter file Name to save data...");
 	name = pGrid->GetInput()->GetSrting(pOut);
-	pOpen.open(name+".txt");
+	pOpen.open(name + ".txt");
 }
 
 void OpenGridAction::Execute()

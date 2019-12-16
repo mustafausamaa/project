@@ -161,7 +161,7 @@ Ladder* Grid::GetNextLadder(const CellPosition& position)
 	}
 	return NULL; // not found
 }
-Snake * Grid::GetNextSnake(const CellPosition& position)
+Snake* Grid::GetNextSnake(const CellPosition& position)
 {
 	int startH = position.HCell(); // represents the start hCell in the current row to search for the ladder in
 	for (int i = position.VCell(); i >= 0; i--) // searching from position.vCell and ABOVE

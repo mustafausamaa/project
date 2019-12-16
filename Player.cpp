@@ -74,7 +74,7 @@ void Player::Draw(Output* pOut) const
 
 	///TODO: use the appropriate output function to draw the player with "playerColor"
 	pOut->DrawPlayer(pCell->GetCellPosition(), playerNum, playerColor);
-	
+
 }
 
 void Player::ClearDrawing(Output* pOut) const
@@ -127,7 +127,7 @@ void Player::Move(Grid* pGrid, int diceNumber)
 		}
 		else {
 			// 3- Set the justRolledDiceNum with the passed diceNumber
-			 justRolledDiceNum=diceNumber;
+			justRolledDiceNum = diceNumber;
 			// 4- Get the player current cell position, say "pos", and add to it the diceNumber (update the position)
 			//    Using the appropriate function of CellPosition class to update "pos"
 			Player* pPlayer = pGrid->GetCurrentPlayer();
@@ -144,7 +144,7 @@ void Player::Move(Grid* pGrid, int diceNumber)
 				g->Apply(pGrid, pPlayer);
 			}
 			pGrid->UpdateInterface();
-			
+
 			// 7- Check if the player reached the end cell of the whole game, and if yes, Set end game with true: pGrid->SetEndGame(true)
 			if (pos.GetCellNum() > 99)
 				pGrid->SetEndGame(true);

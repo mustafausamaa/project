@@ -5,7 +5,6 @@
 #include"Cell.h"
 #include"CutCardAction.h"
 #include"CopyCardAction.h"
-//// Hatwadeehoom  el.cppp Lazemm 
 #include "CardOne.h"
 #include "CardTwo.h"
 #include"CardThree.h"
@@ -21,9 +20,9 @@
 #include"CardThirteen.h"
 #include"CardFourteen.h"
 
-class PasteCardAction :  public CutCardAction ,public Card
+class PasteCardAction : public CutCardAction, public Card
 {
-	
+
 	CellPosition into;
 	Card* getter;
 public:
@@ -31,8 +30,8 @@ public:
 
 	void ReadActionParameters();
 
-	void Execute(); 
-	
+	void Execute();
+
 	~PasteCardAction();
 
 

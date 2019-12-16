@@ -1,7 +1,7 @@
 #pragma once
 #include "Action.h"
 #include "Grid.h"
-class Switch_to_DesignMode:public Action
+class Switch_to_DesignMode :public Action
 {
 public:
 	Switch_to_DesignMode(ApplicationManager* pApp);

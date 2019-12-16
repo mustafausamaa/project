@@ -1,6 +1,6 @@
 #include "CardOne.h"
 
-CardOne::CardOne(const CellPosition & pos) : Card(pos) // set the cell position of the card
+CardOne::CardOne(const CellPosition& pos) : Card(pos) // set the cell position of the card
 {
 	cardNumber = 1; // set the inherited cardNumber data member with the card number (1 here)
 }
@@ -35,10 +35,10 @@ void CardOne::Load(ifstream& Infile, GOType Type, CellPosition& start2, CellPosi
 }
 
 
-void CardOne::ReadCardParameters(Grid * pGrid)
+void CardOne::ReadCardParameters(Grid* pGrid)
 {
-	
-	
+
+
 	///TODO: Implement this function as mentioned in the guideline steps (numbered below) below
 
 
@@ -46,7 +46,7 @@ void CardOne::ReadCardParameters(Grid * pGrid)
 
 
 	// 1- Get a Pointer to the Input / Output Interfaces from the Grid
-	Input* pIn   = pGrid->GetInput();
+	Input* pIn = pGrid->GetInput();
 	Output* pOut = pGrid->GetOutput();
 	// 2- Read an Integer from the user using the Input class and set the walletAmount parameter with it
 	//    Don't forget to first print to a descriptive message to the user like:"New CardOne: Enter its wallet amount ..."
@@ -64,9 +64,9 @@ void CardOne::ReadCardParameters(Grid * pGrid)
 
 void CardOne::Apply(Grid* pGrid, Player* pPlayer)
 {
-		
+
 	///TODO: Implement this function as mentioned in the guideline steps (numbered below) below
-	
+
 
 	// == Here are some guideline steps (numbered below) (numbered below) to implement this function ==
 

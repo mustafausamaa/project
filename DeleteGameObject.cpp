@@ -2,37 +2,37 @@
 #include"Output.h"
 #include"Input.h"
 #include"Grid.h"
-DeleteGameObject::DeleteGameObject(ApplicationManager *pApp)
+DeleteGameObject::DeleteGameObject(ApplicationManager* pApp)
 	:Action(pApp)
 {
-	GameObjectExist=false;
+	GameObjectExist = false;
 }
 
 void DeleteGameObject::ReadActionParameters()
 {
 
-	Grid *pGrid=pManager->GetGrid();
-	Input *pIn=pGrid->GetInput();
-	Output *pOut=pGrid->GetOutput();
+	Grid* pGrid = pManager->GetGrid();
+	Input* pIn = pGrid->GetInput();
+	Output* pOut = pGrid->GetOutput();
 	pOut->PrintMessage("Click on The cell you want to delete");
-	object=pIn->GetCellClicked();
+	object = pIn->GetCellClicked();
 	Cell test(object);
-	GameObject *ptr=NULL;
-	ptr=test.GetGameObject();
-	if(ptr)
+	GameObject* ptr = NULL;
+	ptr = test.GetGameObject();
+	if (ptr)
 	{
-		GameObjectExist=true;
+		GameObjectExist = true;
 	}
 
 
 }
 void DeleteGameObject::Execute()
 {
-	Grid *pGrid=pManager->GetGrid();
-	Input *pIn=pGrid->GetInput();
-	Output *pOut=pGrid->GetOutput();
+	Grid* pGrid = pManager->GetGrid();
+	Input* pIn = pGrid->GetInput();
+	Output* pOut = pGrid->GetOutput();
 	ReadActionParameters();
-	if(GameObjectExist==true)
+	if (GameObjectExist == true)
 	{
 		pGrid->RemoveObjectFromCell(object);
 		pGrid->PrintErrorMessage("Object Successfully removed from cell");

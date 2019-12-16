@@ -27,7 +27,7 @@ void CardNine::ReadCardParameters(Grid* pGrid)
 	pOut->PrintMessage("New Card 9: Enter Cell to move to...");
 	celltomoveto = pIn->GetCellClicked();
 
-	
+
 
 	// 3- Clear the status bar
 	pOut->ClearStatusBar();

@@ -8,7 +8,7 @@ class RollDiceAction : public Action
 	// No parameters for this action
 
 public:
-	RollDiceAction(ApplicationManager *pApp);
+	RollDiceAction(ApplicationManager* pApp);
 
 	virtual void ReadActionParameters();
 

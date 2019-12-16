@@ -39,16 +39,16 @@ void Card::Apply(Grid* pGrid, Player* pPlayer)
 
 void Card::Save(ofstream& OutFile, GOType Type)
 {
-		if (Type == ObjType)
-		{
-			CellPosition temp;
-			temp = GetPosition();
-			
-			OutFile <<cardNumber<<"\t"<< temp.GetCellNum() <<"\t" << endl; //there is still a missing implementation
+	if (Type == ObjType)
+	{
+		CellPosition temp;
+		temp = GetPosition();
 
-		}
-		else { return; }
-	
+		OutFile << cardNumber << "\t" << temp.GetCellNum() << "\t" << endl; //there is still a missing implementation
+
+	}
+	else { return; }
+
 
 }
 

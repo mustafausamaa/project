@@ -2,7 +2,7 @@
 
 #include "GameObject.h"
 
-class Ladder :	public GameObject // inherited from GameObject
+class Ladder : public GameObject // inherited from GameObject
 {
 	// Note: the "position" data member inherited from the GameObject class is used as the ladder's "Start Cell Position"
 
@@ -11,10 +11,10 @@ class Ladder :	public GameObject // inherited from GameObject
 
 public:
 
-	Ladder(const CellPosition & startCellPos, const CellPosition & endCellPos); // A constructor for initialization
+	Ladder(const CellPosition& startCellPos, const CellPosition& endCellPos); // A constructor for initialization
 
 	virtual void Draw(Output* pOut) const; // Draws a ladder from its start cell to its end cell
-	
+
 	virtual void Apply(Grid* pGrid, Player* pPlayer); // Applys the effect of the ladder by moving player to ladder's end cell
 	virtual void Save(ofstream& OutFile, GOType Type);	// Saves the GameObject parameters to the file
 	virtual void Load(ifstream& Infile, GOType Type, CellPosition& start, CellPosition& end);

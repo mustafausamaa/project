@@ -62,7 +62,7 @@ void Ladder::Apply(Grid* pGrid, Player* pPlayer)
 
 void Ladder::Save(ofstream& OutFile, GOType Type)
 {
-	if (Type == ObjType) 
+	if (Type == ObjType)
 	{
 		CellPosition temp;
 		temp = GetPosition();
@@ -72,12 +72,12 @@ void Ladder::Save(ofstream& OutFile, GOType Type)
 	else { return; }
 }
 
-void Ladder::Load(ifstream& Infile, GOType Type,CellPosition& start2, CellPosition& end2)
+void Ladder::Load(ifstream& Infile, GOType Type, CellPosition& start2, CellPosition& end2)
 {
 	if (Type == ladder)
 	{
-		
-		int start,end;
+
+		int start, end;
 		Infile >> start >> end;
 		CellPosition temp(start);
 		CellPosition temp1(end);

@@ -18,7 +18,7 @@
 #include "CardThirteen.h"
 
 
-AddCardAction::AddCardAction(ApplicationManager *pApp) : Action(pApp)
+AddCardAction::AddCardAction(ApplicationManager* pApp) : Action(pApp)
 {
 	// Initializes the pManager pointer of Action with the passed pointer
 }
@@ -27,8 +27,8 @@ AddCardAction::~AddCardAction()
 {
 }
 
-void AddCardAction::ReadActionParameters() 
-{	
+void AddCardAction::ReadActionParameters()
+{
 
 	///TODO: Implement this function as mentioned in the guideline steps (numbered below) below
 
@@ -55,10 +55,10 @@ void AddCardAction::ReadActionParameters()
 	pOut->ClearStatusBar();
 }
 
-void AddCardAction::Execute() 
+void AddCardAction::Execute()
 {
 
-	
+
 	///TODO: Implement this function as mentioned in the guideline steps (numbered below) below
 
 
@@ -67,7 +67,7 @@ void AddCardAction::Execute()
 	// 1- The first line of any Action Execution is to read its parameter first
 	ReadActionParameters();
 	// 2- Switch case on cardNumber data member and create the appropriate card object type
-	Card * pCard = NULL; // will point to the card object type
+	Card* pCard = NULL; // will point to the card object type
 	switch (cardNumber)
 	{
 	case 1:
@@ -125,7 +125,7 @@ void AddCardAction::Execute()
 		// B- Make the "pCard" reads its card parameters: ReadCardParameters(), It is virtual and depends on the card type
 		pCard->ReadCardParameters(pGrid);
 		// C- Add the card object to the GameObject of its Cell:
-		bool added= pGrid->AddObjectToCell(pCard);
+		bool added = pGrid->AddObjectToCell(pCard);
 		// D- if the GameObject cannot be added in the Cell, Print the appropriate error message on statusbar
 		if (added == false)
 			pGrid->PrintErrorMessage("Error: Cell already has an object ! Click to continue ...");

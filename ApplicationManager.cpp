@@ -114,7 +114,7 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 
 	case TO_DESIGN_MODE:
 		pAct = new Switch_to_DesignMode(this);
-		
+
 		break;
 
 

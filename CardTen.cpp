@@ -94,9 +94,9 @@ void CardTen::Apply(Grid* pGrid, Player* pPlayer)
 			}
 			else
 			{
-				
+
 				pGrid->PrintErrorMessage("Sorry, your current wallet is less than the card price");
-				
+
 			}
 		}
 	}
@@ -120,6 +120,6 @@ void CardTen::Apply(Grid* pGrid, Player* pPlayer)
 			}
 
 		}
-		
+
 	}
 }

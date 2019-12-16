@@ -6,7 +6,7 @@
 #include "Card.h"
 #include<fstream>
 
-class OpenGridAction:public Action
+class OpenGridAction :public Action
 {
 	ifstream pOpen;
 	string name;

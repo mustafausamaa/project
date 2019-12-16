@@ -10,11 +10,11 @@ class CardTwelve : public Card
 	static Player* pOwner;
 	static bool IsInitialized;
 public:
-	CardTwelve(const CellPosition & pos);
+	CardTwelve(const CellPosition& pos);
 	void Save(ofstream& OutFile, GOType Type);
 	void Load(ifstream& Infile, GOType Type, CellPosition& start2, CellPosition& end2);
-	void ReadCardParameters(Grid *pGrid);// 
-	void Apply(Grid *pGrid, Player *pPlayer); /*Has two parts
+	void ReadCardParameters(Grid* pGrid);// 
+	void Apply(Grid* pGrid, Player* pPlayer); /*Has two parts
 												1-Checks if the card is bought or not
 												1.1-If it is not we should give the player the option to buy it or not
 												1.1.1- if the user choose yes we check his wallet and compare it to the cardprice
