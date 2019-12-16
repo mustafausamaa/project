@@ -41,7 +41,8 @@ void Player::Set_turncount(int count)
 
 void Player::SetWallet(int wallet)
 {
-	this->wallet = wallet;
+	
+	this->wallet = (wallet > 0 ? wallet:0);
 	// Make any needed validations
 }
 

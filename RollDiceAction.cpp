@@ -39,10 +39,34 @@ void RollDiceAction::Execute()
 		// 3- Get the "current" player from pGrid
 		Player* pPlayer = pGrid->GetCurrentPlayer();
 		// 4- Move the currentPlayer using function Move of class player
-		pPlayer->Move(pGrid, diceNumber);
-		// 5- Advance the current player number of pGrid
-		pGrid->AdvanceCurrentPlayer();
-		// NOTE: the above guidelines are the main ones but not a complete set (You may need to add more steps).
+		Cell* pCell = pPlayer->GetCell();
+		CellPosition cellpositin = pCell->GetCellPosition();
+		int cellnum = cellpositin.GetCellNum();
+		if (cellnum + diceNumber >= 99)
+		{
+			
+			pGrid->GetOutput()->PrintMessage("WINNER...WINNER Chicken Dinner!!!!..click to continue  ");
+			pGrid->GetInput()->GetCellClicked();
+			pGrid->SetEndGame(true);
+			pGrid->GetOutput()->ClearStatusBar();
+			pGrid->GetOutput()->PrintMessage("Do you want to paly again ? press[y/n]");
+			if (pGrid->GetInput()->GetSrting(pGrid->GetOutput()) == "y")
+			{
+				pManager->ExecuteAction(NEW_GAME);
+			}
+			else
+			{
+				pManager->ExecuteAction(EXIT);
+			}
+			
+		}
+		else
+		{
+			pPlayer->Move(pGrid, diceNumber);
+			// 5- Advance the current player number of pGrid
+			pGrid->AdvanceCurrentPlayer();
+			// NOTE: the above guidelines are the main ones but not a complete set (You may need to add more steps).
+		}
 	}
 }
 
