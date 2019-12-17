@@ -120,3 +120,7 @@ void CardEleven::Apply(Grid* pGrid, Player* pPlayer)
 
 	}
 }
+void CardEleven::Set_Isbought(bool t)
+{
+	Isbought = t;
+}

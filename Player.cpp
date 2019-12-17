@@ -41,7 +41,8 @@ void Player::Set_turncount(int count)
 
 void Player::SetWallet(int wallet)
 {
-	this->wallet = wallet;
+	
+	this->wallet = (wallet > 0 ? wallet:0);
 	// Make any needed validations
 }
 
@@ -108,9 +109,19 @@ void Player::Move(Grid* pGrid, int diceNumber)
 			turnCount++;
 			if (turnCount > 3)
 			{
-				wallet = wallet + (diceNumber * 10);
-				turnCount = 0;
-				return;
+			pGrid->GetOutput()->PrintMessage("Do you wish to launch a special attack instead of recharging? y/n");
+			if (pGrid->GetInput()->GetSrting(pGrid->GetOutput()) == "y")
+			{
+				pGrid->GetOutput()->ClearStatusBar();
+				SpecialAttacks(pGrid, diceNumber);
+			}
+			else
+			{ 
+			pGrid->GetOutput()->ClearStatusBar();
+			wallet = wallet + (diceNumber * 10);
+			turnCount = 0;
+			return;
+			}
 			}
 			pCell->GetGameObject()->Apply(pGrid, this);
 			return;
@@ -121,9 +132,19 @@ void Player::Move(Grid* pGrid, int diceNumber)
 		//    If yes, recharge wallet and reset the turnCount and return from the function (do NOT move)
 		if (turnCount > 3)
 		{
+			pGrid->GetOutput()->PrintMessage("Do you wish to launch a special attack instead of recharging? y/n");
+			if (pGrid->GetInput()->GetSrting(pGrid->GetOutput()) == "y")
+			{
+				pGrid->GetOutput()->ClearStatusBar();
+				SpecialAttacks(pGrid, diceNumber);
+			}
+			else
+			{ 
+			pGrid->GetOutput()->ClearStatusBar();
 			wallet = wallet + (diceNumber * 10);
 			turnCount = 0;
 			return;
+			}
 		}
 		else {
 			// 3- Set the justRolledDiceNum with the passed diceNumber
@@ -157,4 +178,34 @@ void Player::AppendPlayerInfo(string& playersInfo) const
 	playersInfo += "P" + to_string(playerNum) + "(";
 	playersInfo += to_string(wallet) + ", ";
 	playersInfo += to_string(turnCount) + ")";
+}
+void Player::SpecialAttacks(Grid* pGrid, int diceNumber)
+{
+	pGrid->GetOutput()->PrintMessage("Choose Your Special Attack .. Ice[1]-Fire[2]-Poison[3]-Lightning[4]..");
+	switch (pGrid->GetInput()->GetInteger(pGrid->GetOutput()))
+	{
+	case 1:
+		pGrid->SpecialAttack_ICE();
+		break;
+	case 2:
+		pGrid->SpecialAttack_FIRE();
+			break;
+	case 3:
+		SpecialAttack_POISON(pGrid, diceNumber);
+		break;
+	case 4:
+		SpecialAttack_LIGHTNING(pGrid, diceNumber);
+		break;
+	default:
+		break;
+	}
+}
+
+void Player::SpecialAttack_POISON(Grid* pGrid, int diceNumber)
+{
+	
+}
+void Player::SpecialAttack_LIGHTNING(Grid* pGrid, int diceNumber)
+{
+	
 }

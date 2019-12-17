@@ -31,6 +31,8 @@ void Snake::Apply(Grid* pGrid, Player* pPlayer)
 	//Output* pOut = new Output;
 	Output* pOut = pGrid->GetOutput();
 	pOut->PrintMessage("You have reached a Snake. Click to continue ...");
+	pGrid->GetInput()->GetCellClicked();
+	pOut->ClearStatusBar();
 	// 2- Apply the ladder's effect by moving the player to the endCellPos
 	pGrid->UpdatePlayerCell(pPlayer, pos);
 	//    Review the "pGrid" functions and decide which function can be used for that

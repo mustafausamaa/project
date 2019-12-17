@@ -52,7 +52,11 @@ void CardOne::ReadCardParameters(Grid* pGrid)
 	//    Don't forget to first print to a descriptive message to the user like:"New CardOne: Enter its wallet amount ..."
 	pOut->PrintMessage("New Card 1: Enter its wallet amount ...");
 	walletAmount = pIn->GetInteger(pOut);
-
+	if (walletAmount < 0)
+	{
+		pGrid->PrintErrorMessage("Invalid walletAmount ...");
+		return;
+	}
 	// [ Note ]:
 	// In CardOne, the only parameter of CardOne is the "walletAmount" value to decrease from player
 	// Card parameters are the inputs you need to take from the user in the time of adding the Card in the grid

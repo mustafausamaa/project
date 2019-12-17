@@ -17,6 +17,7 @@ public:
 	void Load(ifstream& Infile, GOType Type, CellPosition& start2, CellPosition& end2);
 	void ReadCardParameters(Grid* pGrid);// 
 	void Apply(Grid* pGrid, Player* pPlayer);
+  static void Set_Isbought(bool);
 
 	/*Has two parts
 	1-Checks if the card is bought or not
