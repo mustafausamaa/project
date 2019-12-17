@@ -3,7 +3,7 @@
 #include"Grid.h"
 #include"Cell.h"
 #include"CellPosition.h"
-
+#include"CardNine.h"
 #include"CopyCardAction.h"
 
 CopyCardAction::CopyCardAction(ApplicationManager* pApp) : Action(pApp)
@@ -31,6 +31,7 @@ void CopyCardAction::ReadActionParameters() {
 		pGrid->PrintErrorMessage("No Card inside the cell ! Click to Continue");
 		return;
 	}
+
 
 	pGrid->SetClipboard(ptr);
 	pGrid->setClipboardFlag(0);
