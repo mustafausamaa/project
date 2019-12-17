@@ -350,3 +350,74 @@ Grid::~Grid()
 		delete PlayerList[i];
 	}
 }
+void Grid::SpecialAttack_ICE()
+{
+	if (GetCurrentPlayer()->Get_prevent_used())
+	{
+		PrintErrorMessage("It's Same Attack Last Time Can't take it ...");
+		return;
+	}
+	pOut->PrintMessage("Choose a player to prevent from rolling the next turn from 1-4");
+	int pnum = pIn->GetInteger(pOut)-1;
+	if (pnum == currPlayerNumber)
+	{
+		PrintErrorMessage("It's you who will affect Not my fault Sorry.. ");
+		PlayerList[pnum]->set_prevented(true);
+	}
+	else
+	{
+		PlayerList[pnum]->set_prevented(true);
+	}
+}
+void Grid::SpecialAttack_FIRE()
+{
+	if (GetCurrentPlayer()->Get_Fire_used())
+	{
+		PrintErrorMessage("It's Same Attack Last Time Can't take it ...");
+		return;
+	}
+	pOut->PrintMessage("Choose a player to burn.. from 1-4");
+	int pnum = pIn->GetInteger(pOut) - 1;
+	if (pnum == currPlayerNumber)
+	{
+		PrintErrorMessage("It's you who will affect Not my fault Sorry.. ");
+		PlayerList[pnum]->set_Fired(true);
+	}
+	else
+	{
+		PlayerList[pnum]->set_Fired(true);
+	}
+}
+void Grid::SpecialAttack_POISON()
+{
+	if (GetCurrentPlayer()->Get_Poison_used())
+	{
+		PrintErrorMessage("It's Same Attack Last Time Can't take it ...");
+		return;
+	}
+	pOut->PrintMessage("Choose a player to Poison.. from 1-4");
+	int pnum = pIn->GetInteger(pOut) - 1;
+	if (pnum == currPlayerNumber)
+	{
+		PrintErrorMessage("It's you who will affect Not my fault Sorry.. ");
+		PlayerList[pnum]->set_Poisoned(true);
+	}
+	else
+	{
+		PlayerList[pnum]->set_Poisoned(true);
+	}
+}
+void Grid::SpecialAttack_LIGHTNING(Player * pPlayer)
+{
+	if (GetCurrentPlayer()->Get_lightining_used())
+	{
+		PrintErrorMessage("It's Same Attack Last Time Can't take it ...");
+		return;
+	}
+	for (int i = 0; i < 4; i++)
+	{
+		int wall = PlayerList[i]->GetWallet();
+		PlayerList[i]->SetWallet((wall - 20));
+	}
+	pPlayer->set_Lightining_used(true);
+}
