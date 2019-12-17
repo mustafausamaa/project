@@ -88,7 +88,10 @@ public:
 	int numofSnakes();
 	int numofCards();
 	bool IsOverlapping(GameObject* newObj)const;
-
+void SpecialAttack_ICE();
+	void SpecialAttack_FIRE();
+	void SpecialAttack_POISON();
+	void SpecialAttack_LIGHTNING(Player*);
 	~Grid(); // A destructor for any needed deallcations
 };
 
