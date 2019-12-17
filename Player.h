@@ -17,6 +17,16 @@ class Player
 	bool Roll;              // and reset again when reached 3
 						   // it is used to indicate when to move and when to add to your wallet
 	bool freeze;
+	bool prevented;                     
+	bool prevent_used;
+	bool Fired;
+	bool Fire_used;
+	bool Poisoned;
+	bool Poison_used;
+	bool lightining_used;
+	int punishperiod;
+	
+	int SpecialAttacks_Counter;
 public:
 
 	Player(Cell* pCell, int playerNum); // Constructor making any needed initializations
@@ -31,6 +41,14 @@ public:
 	int GetWallet() const;			// a getter for the wallet
 
 	int GetTurnCount() const;		// A getter for the turnCount
+	void set_prevented(bool);
+	void set_Fired(bool);
+	void set_Poisoned(bool);
+	void set_Lightining_used(bool);
+	bool Get_Poison_used();
+	bool Get_lightining_used();
+	bool Get_prevent_used();
+	bool Get_Fire_used();
 
 	///TODO: You can add setters and getters for data members here (if needed)
 	void Set_justRolledDiceNum(int dicenum);
@@ -50,9 +68,5 @@ public:
 	void AppendPlayerInfo(string & playersInfo) const; // Appends player's info to the input string, 
 	                                                   // for example: P0(wallet, turnCount)
   void SpecialAttacks(Grid*,int);
-	void SpecialAttack_ICE(Grid*, int);
-	void SpecialAttack_FIRE(Grid*, int);
-	void SpecialAttack_POISON(Grid*, int);
-	void SpecialAttack_LIGHTNING(Grid*, int);
 };
 
