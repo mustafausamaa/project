@@ -8,6 +8,14 @@ Player::Player(Cell* pCell, int playerNum) : stepCount(0), wallet(100), playerNu
 	this->turnCount = 0;
 	Roll = true;
 	freeze = false;
+	prevented = false;
+	Fired = false;
+	Poisoned = false;
+	Poison_used = false;
+	Fire_used = false;
+	lightining_used = false;
+	prevent_used = false;
+	SpecialAttacks_Counter = 0;
 	// Make all the needed initialization or validations
 }
 
@@ -17,7 +25,25 @@ void Player::set_roll(bool roll)
 {
 	Roll = roll;
 }
-
+void Player::set_prevented(bool t)
+{
+	prevented = t;
+}
+void Player::set_Fired(bool t)
+{
+	Fired = t;
+	punishperiod = 0;
+}
+void Player::set_Poisoned(bool t)
+{
+	Poisoned = t;
+	punishperiod = 0;
+}
+void Player::set_Lightining_used(bool t)
+{
+	lightining_used = t;
+	
+}
 void Player::setfreeze(bool f)
 {
 	freeze = f;
@@ -50,7 +76,22 @@ int Player::GetWallet() const
 {
 	return wallet;
 }
-
+bool Player::Get_Fire_used()
+{
+	return Fire_used;
+}
+bool Player::Get_Poison_used()
+{
+	return Poison_used;
+}
+bool Player::Get_prevent_used()
+{
+	return prevent_used;
+}
+bool Player::Get_lightining_used()
+{
+	return lightining_used;
+}
 int Player::GetTurnCount() const
 {
 	return turnCount;
@@ -94,7 +135,53 @@ void Player::Move(Grid* pGrid, int diceNumber)
 {
 
 	///TODO: Implement this function as mentioned in the guideline steps (numbered below) below
-
+	if (Fired && !Fire_used && SpecialAttacks_Counter < 2)
+	{
+		if (punishperiod < 3)
+		{
+			wallet -= 20;
+			punishperiod++;
+			pGrid->GetOutput()->PrintMessage("You are Fired Wallet: "+ to_string(wallet) +"...click to continue");
+			pGrid->GetInput()->GetCellClicked();
+			pGrid->GetOutput()->ClearStatusBar();
+		}
+		else{
+		Fired = false;
+		Fire_used = true;
+		SpecialAttacks_Counter++;
+		}
+	}
+	if (Poisoned && !Poison_used && SpecialAttacks_Counter < 2)
+	{
+		if (punishperiod < 5)
+		{
+			diceNumber--;
+			punishperiod++;
+			pGrid->GetOutput()->PrintMessage("You are Poisoned dice Number: " + to_string(diceNumber) + "...click to continue");
+			pGrid->GetInput()->GetCellClicked();
+			pGrid->GetOutput()->ClearStatusBar();
+		}
+		else {
+			Poisoned = false;
+			Poison_used = true;
+			SpecialAttacks_Counter++;
+		}
+	}
+	if (prevented && !prevent_used && SpecialAttacks_Counter < 2)
+	{
+		pGrid->GetOutput()->PrintMessage("You are Prevented from Playing ...click to continue");
+		pGrid->GetInput()->GetCellClicked();
+		pGrid->GetOutput()->ClearStatusBar();
+		turnCount++;
+		if (turnCount > 3)
+		{
+			turnCount = 0;
+		}
+		prevented = false;
+		prevent_used = true;
+		SpecialAttacks_Counter++;
+		return;
+	}
 
 	// == Here are some guideline steps (numbered below) to implement this function ==
 	if (Roll == false)
@@ -109,19 +196,31 @@ void Player::Move(Grid* pGrid, int diceNumber)
 			turnCount++;
 			if (turnCount > 3)
 			{
-			pGrid->GetOutput()->PrintMessage("Do you wish to launch a special attack instead of recharging? y/n");
-			if (pGrid->GetInput()->GetSrting(pGrid->GetOutput()) == "y")
-			{
-				pGrid->GetOutput()->ClearStatusBar();
-				SpecialAttacks(pGrid, diceNumber);
-			}
-			else
-			{ 
-			pGrid->GetOutput()->ClearStatusBar();
-			wallet = wallet + (diceNumber * 10);
-			turnCount = 0;
-			return;
-			}
+				if (SpecialAttacks_Counter < 2)
+				{
+					pGrid->GetOutput()->PrintMessage("Do you wish to launch a special attack instead of recharging? y/n");
+					if (pGrid->GetInput()->GetSrting(pGrid->GetOutput()) == "y")
+					{
+						pGrid->GetOutput()->ClearStatusBar();
+						SpecialAttacks(pGrid, diceNumber);
+						turnCount = 0;
+						return;
+					}
+					else
+					{
+						pGrid->GetOutput()->ClearStatusBar();
+						wallet = wallet + (diceNumber * 10);
+
+						turnCount = 0;
+						return;
+					}
+
+				}
+				else {
+					wallet = wallet + (diceNumber * 10);
+					turnCount = 0;
+					return;
+				}
 			}
 			pCell->GetGameObject()->Apply(pGrid, this);
 			return;
@@ -132,23 +231,35 @@ void Player::Move(Grid* pGrid, int diceNumber)
 		//    If yes, recharge wallet and reset the turnCount and return from the function (do NOT move)
 		if (turnCount > 3)
 		{
-			pGrid->GetOutput()->PrintMessage("Do you wish to launch a special attack instead of recharging? y/n");
-			if (pGrid->GetInput()->GetSrting(pGrid->GetOutput()) == "y")
+			if (SpecialAttacks_Counter < 2)
 			{
-				pGrid->GetOutput()->ClearStatusBar();
-				SpecialAttacks(pGrid, diceNumber);
+				pGrid->GetOutput()->PrintMessage("Do you wish to launch a special attack instead of recharging? y/n");
+				if (pGrid->GetInput()->GetSrting(pGrid->GetOutput()) == "y")
+				{
+					pGrid->GetOutput()->ClearStatusBar();
+					SpecialAttacks(pGrid, diceNumber);
+					turnCount = 0;
+					return;
+				}
+				else
+				{
+					pGrid->GetOutput()->ClearStatusBar();
+					wallet = wallet + (diceNumber * 10);
+
+					turnCount = 0;
+					return;
+				}
+
 			}
-			else
-			{ 
-			pGrid->GetOutput()->ClearStatusBar();
-			wallet = wallet + (diceNumber * 10);
-			turnCount = 0;
-			return;
+			else {
+				wallet = wallet + (diceNumber * 10);
+				turnCount = 0;
+				return;
 			}
 		}
 		else {
 			// 3- Set the justRolledDiceNum with the passed diceNumber
-			justRolledDiceNum = diceNumber;
+			 justRolledDiceNum=diceNumber;
 			// 4- Get the player current cell position, say "pos", and add to it the diceNumber (update the position)
 			//    Using the appropriate function of CellPosition class to update "pos"
 			Player* pPlayer = pGrid->GetCurrentPlayer();
@@ -165,7 +276,7 @@ void Player::Move(Grid* pGrid, int diceNumber)
 				g->Apply(pGrid, pPlayer);
 			}
 			pGrid->UpdateInterface();
-
+			
 			// 7- Check if the player reached the end cell of the whole game, and if yes, Set end game with true: pGrid->SetEndGame(true)
 			if (pos.GetCellNum() > 99)
 				pGrid->SetEndGame(true);
@@ -189,23 +300,14 @@ void Player::SpecialAttacks(Grid* pGrid, int diceNumber)
 		break;
 	case 2:
 		pGrid->SpecialAttack_FIRE();
-			break;
+		break;
 	case 3:
-		SpecialAttack_POISON(pGrid, diceNumber);
+		pGrid->SpecialAttack_POISON();
 		break;
 	case 4:
-		SpecialAttack_LIGHTNING(pGrid, diceNumber);
+		pGrid->SpecialAttack_LIGHTNING(this);
 		break;
 	default:
 		break;
 	}
-}
-
-void Player::SpecialAttack_POISON(Grid* pGrid, int diceNumber)
-{
-	
-}
-void Player::SpecialAttack_LIGHTNING(Grid* pGrid, int diceNumber)
-{
-	
 }
