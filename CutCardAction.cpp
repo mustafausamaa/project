@@ -27,7 +27,7 @@ void CutCardAction::ReadActionParameters() {
 	Grid* pGrid = pManager->GetGrid();
 	Input* iptr = pGrid->GetInput();
 	Output* optr = pGrid->GetOutput();
-
+	
 	pGrid->PrintErrorMessage("Click on a Card to be added to Clipboard ...");
 	pos = iptr->GetCellClicked();
 
@@ -42,11 +42,4 @@ void CutCardAction::ReadActionParameters() {
 	pGrid->PrintErrorMessage("Card successfully added to Clipboard ! Click to Continue");
 
 
-}
-
-void CutCardAction::Execute() {
-
-	ReadActionParameters();
-	/// de tet3emel fel pastee msh henaaa	Grid* pGrid=pManager->GetGrid();
-	// pGrid->RemoveObjectFromCell(pos);
 }
