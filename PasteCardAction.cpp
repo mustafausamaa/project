@@ -11,6 +11,13 @@ void PasteCardAction::ReadActionParameters()
 		Grid* pGrid = pManager->GetGrid();
 		Input* iptr = pGrid->GetInput();
 		Output* optr = pGrid->GetOutput();
+		
+	Card* tst = pGrid->GetClipboard();
+	if (tst==NULL){
+		pGrid->PrintErrorMessage("The Clipboard is empty ! Click to Continue ...");
+	return;
+	}
+
 
 		pGrid->PrintErrorMessage("Click on a cell to paste the Clipboard ! Click to Continue ...");
 		CellPosition x = iptr->GetCellClicked();
@@ -31,17 +38,23 @@ void PasteCardAction::Execute()
 	ReadActionParameters();
 	Grid* pGrid = pManager->GetGrid();
 	Card* tst = pGrid->GetClipboard();
+	CardOne* x=dynamic_cast<CardOne*>(tst);
+	CardTwo* xy=dynamic_cast<CardTwo*>(tst);
+	CardNine* xz=dynamic_cast<CardNine*>(tst);
 
+	if (tst==NULL){
+	return;
+	}
 	bool z = 0;
 	// 2- Switch case on cardNumber data member and create the appropriate card object type
 	Card* pCard = NULL; // will point to the card object type
 	switch (tst->GetCardNumber())
 	{
 	case 1:
-		pCard = new CardOne(into);
+		pCard = new CardOne(into,x->getwallet());		
 		break;
 	case 2:
-		pCard = new CardTwo(into);
+		pCard = new CardTwo(into,xy->getwallet());
 		break;
 	case 3:
 		pCard = new CardThree(into);
@@ -63,7 +76,7 @@ void PasteCardAction::Execute()
 		break;
 
 	case 9:
-		pCard = new CardNine(into);
+		pCard = new CardNine(into,xz->pasteto());
 		break;
 	case 10:
 		pCard = new CardTen(into);
@@ -88,6 +101,7 @@ void PasteCardAction::Execute()
 		// A- We get a pointer to the Grid from the ApplicationManager
 		Grid* pGrid = pManager->GetGrid();
 		// B- Make the "pCard" reads its card parameters: ReadCardParameters(), It is virtual and depends on the card type
+		
 		pCard->ReadCardParameters(pGrid);
 		// C- Add the card object to the GameObject of its Cell:
 		bool added = pGrid->AddObjectToCell(pCard);
@@ -98,7 +112,8 @@ void PasteCardAction::Execute()
 
 	if (pGrid->getClipboardFlag()) {
 		pGrid->RemoveObjectFromCell(pGrid->GetClipboard()->GetPosition());
-		pGrid->PrintErrorMessage("Clipboard Deleted Successfully ! Click to continue ...");
+		pGrid->SetClipboard(NULL);
+		pGrid->PrintErrorMessage("Clipboard Freed Successfully ! Click to continue ...");
 	}
 
 
